@@ -7,12 +7,12 @@ In this lesson, we'll learn about **_Object Relational Mappers_**, and how we ca
 
 ## Objectives
 
-You will learn how to:
+You will be able to:
 
 * Understand and explain the concept of an Object Relational Mapping
 * Identify the steps needed to use sqlalchemy with a database
 
-### Understanding Object-Relational Mappings
+## Understanding Object-Relational Mappings
 
 Relational databases excel at storing information in a clean, encapsulated way.  So do objects in an Object-Oriented language such as python! We can easily store the information contained within a row by treating each row as a separate object, with the column values corresponding to attributes for that object.  All rows in a given table must have the same columns, which is something we can easily reproduce when creating a class in Python.  The hard part is getting our data from a relational database and storing the data needed in an object to work with it in python.  Luckily, we have **_Object Relational Mappers_**, or **_ORMs_** to take care of the heavy lifting for us!
 
@@ -22,13 +22,13 @@ Relational databases excel at storing information in a clean, encapsulated way. 
 When working with an ORM, each row of data gets it's own corresponding object.  This allows us to leverage the power of Object-Oriented Programming while working with data from our relational database!
 
 
-### Using SQLAlchemy 
+## Using SQLAlchemy 
 
 In python, the most popular ORM is called [SQLAlchemy](https://www.sqlalchemy.org/).    For the remainder of this lesson, we'll review how to connect to a database using SQLAlchemy, and then work through basic CRUD actions using the library (Create, Read, Update, Delete). 
 
-### 1. Setup
+## 1. Setup
 
-#### Create and connect to our database
+### Create and connect to our database
 
 We can create and establish a connection to our new database with sqlalchemy's create_engine function. The first step is to import this function from the sqlalchemy library at the top of our schema.py file. Then, we will use this function to create a database, in this case musicians.db, with the following lines of code:
 
@@ -41,7 +41,7 @@ engine = create_engine('sqlite:///musicians.db', echo=True)
 ```
 Technically, the database does not exist yet. We will not create the musicians database until later on when we call the engine variable.  we'll run this code once we've actually created a `Musician` class, later on. At this point, we would likely leave this at the bottom of our file or notebook, since we can't run it until we've actually set everything up. 
 
-#### Declaring A Mapping
+### Declaring A Mapping
 
 Next, we need our Python classes to have the functionality of the **_declarative base class_**. The declarative base is responsible for cataloging our classes and tables. We import the `declarative_base` from the SQLAlchemy library at the top of our Python script with the other dependencies as so:
 
@@ -54,7 +54,7 @@ We will need to import `Column`, `Integer`, `String`, `DateTime`, `ForeignKey` a
 
 `from sqlalchemy import *`
 
-#### Executing Table Creation
+### Executing Table Creation
 
 Remember that engine variable from the very beginning that we left at the bottom of the file? Time to put it to use! We will execute the creation of our database and the musicians table with the code below. The declarative base's `metadata.create_all()` issues the SQL commands so that our database and table are up and running.
 
@@ -80,9 +80,9 @@ engine = create_engine('sqlite:///musicians.db', echo=True)
 Base.metadata.create_all(engine)
 ```
 
-### Part 2: Create the Schema
+## Part 2: Create the Schema
 
-#### Construct the` Musicians` Table
+### Construct the` Musicians` Table
 
 Finally, with all this setup out of the way, we are ready to create a SQL table! We mentioned above that our classes need to have the functionality of the declarative base class. How can we achieve this? We can use object inheritance! By passing our Musician class the Base instance we declared above as an argument, our Musician class will inherit all of the functionality of what commonly is referred to as the parent or super class.
 
@@ -172,7 +172,7 @@ engine = create_engine('sqlite:///musicians.db', echo=True)
 Base.metadata.create_all(engine)
 ```
 
-#### Let's Create Our Database!
+### Let's Create Our Database!
 
 Run the code in the cell below to create our `musicians.db` database, complete with the `musicians` table that we specified as a class. 
 
@@ -218,8 +218,8 @@ Base.metadata.create_all(engine)
     2018-10-22 22:33:06,190 INFO sqlalchemy.engine.base.Engine ()
     2018-10-22 22:33:06,192 INFO sqlalchemy.engine.base.Engine PRAGMA table_info("instruments")
     2018-10-22 22:33:06,192 INFO sqlalchemy.engine.base.Engine ()
-    
 
-# Conclusion
+
+## Conclusion
 
 In this lesson, we learned that declaring a mapping means creating a SQLAlchemy object that takes our python class objects and maps them to our SQL tables and saves them in our database. We also learned the basic setup for importing SQLAlchemy, creating a connection to our database, creating a mapping with a SQL table, and finally how to execute creating the database.
