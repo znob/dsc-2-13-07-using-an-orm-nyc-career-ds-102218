@@ -1,5 +1,5 @@
 
-# Using An ORM
+# Using an ORM
 
 ## Introduction
 
@@ -220,6 +220,6 @@ Base.metadata.create_all(engine)
     2018-10-22 22:33:06,192 INFO sqlalchemy.engine.base.Engine ()
 
 
-## Conclusion
+## Summary
 
 In this lesson, we learned that declaring a mapping means creating a SQLAlchemy object that takes our python class objects and maps them to our SQL tables and saves them in our database. We also learned the basic setup for importing SQLAlchemy, creating a connection to our database, creating a mapping with a SQL table, and finally how to execute creating the database.
